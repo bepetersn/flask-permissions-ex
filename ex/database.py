@@ -5,6 +5,8 @@ from sqlalchemy import Column, Unicode, Integer
 from . import db
 
 
+# Replace UserPermissionMixin with
+# db.Model, and all works fine.
 class User(UserPermissionMixin):
 
     id = Column(Integer, primary_key=True)
