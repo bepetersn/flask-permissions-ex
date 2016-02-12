@@ -7,7 +7,7 @@ from . import db
 
 # Replace UserPermissionMixin with
 # db.Model, and all works fine.
-class User(UserMixin):
+class User(db.Model):
 
     id = Column(Integer, primary_key=True)
     email = Column(Unicode(255))

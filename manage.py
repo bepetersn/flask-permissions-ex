@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import code
 
 import click
 from ex import app, db
@@ -20,6 +21,14 @@ def init_db():
 @click.option('--port', '-p')
 def run(debug, host, port):
     app.run(host=host, port=port, debug=debug)
+
+
+@main.command()
+def shell():
+    with app.test_request_context():
+        code.interact('', local={
+            'app': app, 'db': db
+        })
 
 
 if __name__ == '__main__':
