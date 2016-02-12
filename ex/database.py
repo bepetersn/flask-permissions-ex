@@ -1,5 +1,5 @@
 #from flask_login import UserMixin as UserLoginMixin
-from flask_permissions.models import UserMixin as UserPermissionMixin
+from flask_permissions.models import UserMixin
 from werkzeug.security import generate_password_hash
 from sqlalchemy import Column, Unicode, Integer
 from . import db
@@ -7,7 +7,7 @@ from . import db
 
 # Replace UserPermissionMixin with
 # db.Model, and all works fine.
-class User(UserPermissionMixin):
+class User(UserMixin):
 
     id = Column(Integer, primary_key=True)
     email = Column(Unicode(255))
@@ -23,7 +23,7 @@ class User(UserPermissionMixin):
     def __init__(self, email, password, roles=None):
         self.email = email
         self.set_password(password)
-        UserPermissionMixin.__init__(self, roles)
+        UserMixin.__init__(self, roles)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
