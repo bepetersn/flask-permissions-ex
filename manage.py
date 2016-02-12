@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import click
-from ex import app
+from ex import app, db
 
 
 @click.group()
@@ -11,7 +11,7 @@ def main():
 
 @main.command()
 def init_db():
-    pass
+    db.create_all()
 
 
 @main.command()
