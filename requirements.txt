@@ -3,4 +3,4 @@ flask-sqlalchemy
 flask-login
 flask-permissions
 click
-mysql
+mysqlclient
