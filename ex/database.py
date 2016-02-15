@@ -1,15 +1,14 @@
 #from flask_login import UserMixin as UserLoginMixin
 from flask_permissions.models import UserMixin
 from werkzeug.security import generate_password_hash
-from sqlalchemy import Column, Unicode, Integer
+from sqlalchemy import Column, Unicode
 from . import db
 
 
 # Replace UserPermissionMixin with
 # db.Model, and all works fine.
-class User(db.Model):
+class User(UserMixin):
 
-    id = Column(Integer, primary_key=True)
     email = Column(Unicode(255))
     password_hash = Column(Unicode(71))
 
@@ -17,8 +16,6 @@ class User(db.Model):
     __mapper_args__ = {
         'polymorphic_identity': 'user' # This can be any unique value except 'usermixin'.
     }
-
-    __tablename__ = 'users'
 
     def __init__(self, email, password, roles=None):
         self.email = email
