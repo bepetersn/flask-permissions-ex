@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 import code
+import subprocess
 import click
 from click_defaults import main
 from ex import app, db as sqla_db
+from ex.database import connection_url
 from ex.db_utils import mysql_connection
 
 
@@ -33,10 +35,10 @@ def db():
 
 @db.command()
 def create():
-    cursor = mysql_connection(sqla_db).cursor()
+    cursor = mysql_connection().cursor()
     cursor.execute(
         'CREATE DATABASE IF NOT EXISTS %s;' \
-        % sqla_db.url.database
+        % connection_url.database
     )
 
 @db.command()
@@ -46,11 +48,19 @@ def init():
 
 @db.command()
 def drop():
-    cursor = mysql_connection(sqla_db).cursor()
+    cursor = mysql_connection().cursor()
     cursor.execute(
-        'CREATE DATABASE IF NOT EXISTS %s;' \
-        % sqla_db.url.database
+        'DROP DATABASE IF EXISTS %s;' \
+        % connection_url.database
     )
+
+
+@db.command()
+def shell():
+    mysql_running_string = 'mysql -u %s -p%s' % \
+            (connection_url.username,
+             connection_url.password)
+    subprocess.call(mysql_running_string.split())
 
 
 if __name__ == '__main__':
