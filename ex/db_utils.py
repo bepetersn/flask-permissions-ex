@@ -1,5 +1,5 @@
 import MySQLdb
-from ex.database import connection_url
+from .database import connection_url
 
 
 def mysql_connection():
