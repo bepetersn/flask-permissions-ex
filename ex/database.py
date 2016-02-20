@@ -14,12 +14,6 @@ class User(UserMixin):
     email = Column(Unicode(255))
     password_hash = Column(Unicode(71))
 
-    # Identify the class to differentiate between sub-types of the UserMixin.
-    __mapper_args__ = {
-        'polymorphic_identity': 'user',
-        'concrete': True
-    }
-
     __tablename__ = 'users'
 
     def __init__(self, email, password, roles=None):
