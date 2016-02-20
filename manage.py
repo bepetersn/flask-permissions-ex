@@ -40,10 +40,13 @@ def create():
         'CREATE DATABASE IF NOT EXISTS %s;' \
         % connection_url.database
     )
+    click.echo('Database created.')
+
 
 @db.command()
 def init():
     sqla_db.create_all()
+    click.echo('Database schema initialized.')
 
 
 @db.command()
@@ -53,6 +56,7 @@ def drop():
         'DROP DATABASE IF EXISTS %s;' \
         % connection_url.database
     )
+    click.echo('Database successfully dropped.')
 
 
 @db.command()
