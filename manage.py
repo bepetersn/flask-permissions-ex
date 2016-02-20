@@ -4,7 +4,7 @@ import subprocess
 import click
 from click_defaults import main
 from ex import app, db as sqla_db
-from ex.database import connection_url
+from ex.database import connection_url, User
 from ex.db_utils import mysql_connection
 
 
@@ -25,7 +25,7 @@ def run(debug, host, port):
 def shell():
     with app.test_request_context():
         code.interact(local={
-            'app': app
+            'app': app, 'db': sqla_db, 'User': User
         })
 
 @main.group()
