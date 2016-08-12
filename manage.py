@@ -2,7 +2,6 @@
 import IPython
 import subprocess
 import click
-from click_defaults import main
 from ex import app, db as sqla_db
 from ex.database import (connection_url,
     # This is useful to have in IPython's context
