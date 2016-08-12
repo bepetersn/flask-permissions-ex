@@ -2,7 +2,7 @@ flask
 bcrypt
 flask-sqlalchemy
 flask-login
-flask-permissions
+-e git+https://github.com/bepetersn/flask-permissions.git#egg=flask-permissions
 click
 mysqlclient
 ipython
