@@ -4,3 +4,4 @@ flask-login
 flask-permissions
 click
 mysqlclient
+ipython
