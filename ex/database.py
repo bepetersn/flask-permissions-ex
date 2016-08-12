@@ -15,7 +15,6 @@ class User(UserMixin):
 
     def __init__(self, name, email, password, roles=None):
         """Setting params to the object."""
-        import pdb; pdb.set_trace()
         self.name = name
         self.email = email.lower()
         self.password = bcrypt.hashpw(
